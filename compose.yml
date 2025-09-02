@@ -1,0 +1,32 @@
+name: RabbitMQ
+services:
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:4.1.3
+    container_name: rabbitmq
+    restart: unless-stopped
+    ports:
+      - '1883:1883'
+    environment:
+      - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=yes
+      - RABBITMQ_DISK_FREE_RELATIVE_LIMIT=1.0
+      - RABBITMQ_DISK_FREE_ABSOLUTE_LIMIT=500MB
+      - RABBITMQ_ENABLE_LDAP=yes
+      - RABBITMQ_LDAP_SERVERS=${LDAP_IP}
+      - RABBITMQ_LDAP_SERVERS_PORT=${LDAP_PORT}
+      - RABBITMQ_LDAP_USER_DN_PATTERN=uid=${MQTT_BIND},ou=people,dc=example,dc=com
+      - RABBITMQ_PLUGINS=rabbitmq_mqtt,rabbitmq_management,rabbitmq_auth_backend_ldap
+    volumes:
+      - rabbitmq_data:/bitnami/rabbitmq/mnesia
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mqtt
+networks:
+    mqtt:
+volumes:
+  rabbitmq_data:
+    name: rabbitmq-data
