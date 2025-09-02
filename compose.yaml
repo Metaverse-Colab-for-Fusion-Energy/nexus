@@ -14,7 +14,7 @@ services:
       - RABBITMQ_ENABLE_LDAP=yes
       - RABBITMQ_LDAP_SERVERS=${LDAP_IP}
       - RABBITMQ_LDAP_SERVERS_PORT=${LDAP_PORT}
-      - RABBITMQ_LDAP_USER_DN_PATTERN=uid=${MQTT_BIND},ou=people,dc=example,dc=com
+      - RABBITMQ_LDAP_USER_DN_PATTERN=uid=$${username},ou=people,dc=example,dc=com
       - RABBITMQ_PLUGINS=rabbitmq_mqtt,rabbitmq_management,rabbitmq_auth_backend_ldap
     volumes:
       - rabbitmq_data:/bitnami/rabbitmq/mnesia
