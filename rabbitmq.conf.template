@@ -1,0 +1,11 @@
+# Use LDAP as the only authentication backend
+auth_backends.1 = ldap
+
+# Point to LDAP server(s)
+auth_ldap.servers.1 = $LDAP_SERVER
+auth_ldap.port = $LDAP_PORT
+auth_ldap.use_ssl = $LDAP_SSL
+auth_ldap.timeout = 5000
+
+# Direct bind: substitute ${username} into DN
+auth_ldap.user_dn_pattern = uid=${username},ou=people,dc=example,dc=com
