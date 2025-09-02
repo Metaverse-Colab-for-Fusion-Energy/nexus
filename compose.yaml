@@ -16,10 +16,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - mqtt
-networks:
-    mqtt:
+    network_mode: host
 volumes:
   rabbitmq_data:
     name: rabbitmq-data
