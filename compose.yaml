@@ -4,9 +4,9 @@ services:
     build:
       context: .
       args:
-        LDAP_SERVER: apperture-ldap
-        LDAP_PORT: 3890
-        LDAP_SSL: false
+        LDAP_SERVER: ${LDAP_SERVER}
+        LDAP_PORT: ${LDAP_PORT}
+        LDAP_SSL: ${LDAP_SSL}
     container_name: rabbitmq
     ports:
       - "1883:1883"
