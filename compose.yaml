@@ -21,6 +21,3 @@ networks:
   mqtt:
     name: apperture_apperture
     external: true
-volumes:
-  rabbitmq_data:
-    name: rabbitmq-data
