@@ -8,6 +8,7 @@ services:
         LDAP_PORT: ${LDAP_PORT}
         LDAP_SSL: ${LDAP_SSL}
     container_name: rabbitmq
+    restart: unless-stopped
     ports:
       - "1883:1883"
     healthcheck:
