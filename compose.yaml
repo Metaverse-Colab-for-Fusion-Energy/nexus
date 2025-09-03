@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        LDAP_SERVER: 130.88.41.197
+        LDAP_SERVER: apperture-ldap
         LDAP_PORT: 3890
         LDAP_SSL: false
     container_name: rabbitmq
@@ -19,6 +19,8 @@ services:
       - mqtt
 networks:
   mqtt:
+    name: apperture_apperture
+    external: true
 volumes:
   rabbitmq_data:
     name: rabbitmq-data
